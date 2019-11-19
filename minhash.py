@@ -28,11 +28,11 @@ def order_minhash(stream, l):
     counts = Counter()
     for kmer in kmers:
         counts[kmer]+=1
-    hashes = [(i, hash(hash(kmer) + counts[kmer])) for i, kmer in enumerate(kmers)]
+    hashes = [(hash(hash(kmer) + counts[kmer]), i) for i, kmer in enumerate(kmers)]
     heapq.heapify(hashes)
     topl = [heapq.heappop(hashes) for _ in range(l)]
     # Sort topl by kmer position
-    return np.array([h for _, h in sorted(topl, key=lambda x: x[0])])
+    return np.array([h for _, h in sorted(topl, key=lambda x: x[1])])
 
 def hamming_similarity(s1, s2):
     """ Compute the hamming similarity between two signatures """
