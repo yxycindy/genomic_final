@@ -1,0 +1,8 @@
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101015/Acanthisitta_chloris.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101001/duck.scafSeq.gapFilled.noMito
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101019/Antrostomus_carolinensis.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101016/Apaloderma_vittatum.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/100001_101000/100005/phylogeny_study_update/Aptenodytes_forsteri.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101017/Balearica_regulorum.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101018/Buceros_rhinoceros.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101004/Calypte_anna.fa.gz
