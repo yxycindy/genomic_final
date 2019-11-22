@@ -6,3 +6,11 @@ ftp://parrot.genomics.cn/gigadb/pub/10.5524/100001_101000/100005/phylogeny_study
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101017/Balearica_regulorum.fa.gz
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101018/Buceros_rhinoceros.fa.gz
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101004/Calypte_anna.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101020/Cariama_cristata.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101021/Cathartes_aura.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101005/Chaetura_pelagica.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101007/Charadrius_vociferus.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101022/Chlamydotis_macqueenii.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101023/Colius_striatus.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/100001_101000/100007/phylogeny_study_update/Columba_livia.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101008/Corvus_brachyrhynchos.fa.gz
