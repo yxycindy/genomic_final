@@ -29,3 +29,17 @@ ftp://parrot.genomics.cn/gigadb/pub/10.5524/100001_101000/100059/ap_v6.mega.fa
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101029/Merops_nubicus.fa.gz
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101030/Mesitornis_unicolor.fa.gz
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101031/Nestor_notabilis.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101003/Nipponia_nippon.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101011/Opisthocomus_hoazin.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101032/Pelecanus_crispus.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101033/Phaethon_lepturus.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101034/Phalacrocorax_carbo.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101035/Phoenicopterus_ruber.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101012/Picoides_pubescens.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101036/Podiceps_cristatus.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101037/Pterocles_gutturalis.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/100001_101000/100006/phylogeny_study_update/Pygoscelis_adeliae.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101013/Struthio_camelus.20130116.OM.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101038/Tauraco_erythrolophus.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101014/Tinamus_guttatus.fa.gz
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101039/Tyto_alba.fa.gz
