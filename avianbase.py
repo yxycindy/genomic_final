@@ -3,6 +3,8 @@ import urllib.request
 import gzip
 import sys
 from time import time
+from minhash import string_to_kmers
+import re
 
 def progress(count, blocksize, total_size):
     global start
@@ -10,6 +12,21 @@ def progress(count, blocksize, total_size):
         start = time()
     sys.stdout.write('\rDownloaded {}% of {}MB -- ETA {}m'.format(int(100*count * blocksize / total_size), total_size // (1024*1024), int((time() - start) * total_size / (count * blocksize + 1)/60)))
     sys.stdout.flush()
+
+def kmers_from_file(file, k):
+    with file as f:
+        prevs = []
+        while True:
+            data = f.read(256)
+            data = re.sub(b'>.*?\n', b'', data)
+            data = re.sub(b'\s',b'', data)
+            if not data:
+                break
+            for i, prev in enumerate(prevs):
+                yield prev + data[0:i+1]
+            for kmer in string_to_kmers(data, k):
+                yield kmer
+            prevs = [data[-(j-1):] for j in range(k-1)]
 
 class Avianbase:
     def __init__(self, filename='links1.txt', out_dir='./tmp', cache=False):

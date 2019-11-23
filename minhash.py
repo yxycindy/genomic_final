@@ -1,14 +1,37 @@
 import numpy as np
 from collections import Counter
 import heapq
+from tqdm import tqdm
+
+def nsmallest_no_duplicates(n, iterable, count=False):
+    """ Compute the n smallest elements WITHOUT counting duplicates 
+        Optional: count the number of occurrences of the n smallest elements
+    """
+    keys = Counter()
+    heap = []
+    for i, v in enumerate(iterable):
+        key = -v[0] if isinstance(v, tuple) else -v
+        value = v[1] if isinstance(v, tuple) else v
+        if len(heap) < n:
+            if key not in keys:
+                heapq.heappush(heap, (key, value))
+            keys[key] += 1
+        else:
+            if heap[0][0] <= key:
+                if key not in keys:
+                    keys.remove(heap[0])
+                    heapq.heapreplace(heap, (key, value))
+                keys[key] += 1
+    if count:
+        return [(val, keys[k]) for k, val in heap]
+    else:
+        return [val for _, val in heap]
 
 def minhash(stream, elems):
     """ Compute the minhash signature for a generator of strings """
     m = np.ones(elems, dtype=np.int64) * np.iinfo(np.int64).max
-    for kmer in stream:
-        for i in range(elems):
-            m[i] = np.min([m[i], np.int64(hash(hash(kmer)+i))])
-    return m
+    topk = nsmallest_no_duplicates(elems, (hash(kmer) for kmer in tqdm(stream)))
+    return np.array(topk)
 
 def weighted_minhash(stream, elems):
     """ MinHash for Jaccard similarity """
@@ -63,3 +86,31 @@ def edit_distance(x, y):
 def edit_similarity(x, y):
     """ Quantity in [0,1] measuring similarity between two strings """
     return 1.0 - edit_distance(x,y) / max(len(x), len(y))
+    
+def jaccard_hash(ha, hb):
+    """ Compute the jaccard similarity estimate from two minhash signatures """
+    ha = set(ha)
+    hb = set(hb)
+    X = ha.union(hb)
+    k = max(len(ha), len(hb))
+    X = heapq.nsmallest(k, X)
+    return len(set(X).intersection(ha, hb)) / k
+
+def weighted_jaccard_hash(ha, hb):
+    """ Compute the weighted jaccard similarity between two multisets """
+    union = set(ha).union(hb)
+    ha = Counter(ha)
+    hb = Counter(hb)
+
+    intersection_count = 0
+    union_count = 0
+    for k in union:
+        if k in ha and k in hb: # In intersection
+            intersection_count += max(ha[k], hb[k])
+            union_count += max(ha[k], hb[k])
+        else:
+            if k in ha:
+                union_count += ha[k]
+            else:
+                union_count += hb[k]
+    return intersection_count / union_count
