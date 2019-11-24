@@ -16,11 +16,10 @@ def main():
     infile = open(filename, 'r')
     sstream = StringIO()
     for line in infile:
-        if line[0] == '>':
-            continue
-#        seqlist.append(line.rstrip())
-#        seq = ''.join(seqlist)
-        sstream.write(line.rstrip())
+        if line[0] != '>':
+#            seqlist.append(line.rstrip())
+#            seq = ''.join(seqlist)
+            sstream.write(line.rstrip())
 
     seq = sstream.getvalue()
 
@@ -30,13 +29,15 @@ def main():
     # ~17.5 seconds
     sstream.close()
 
+    print(len(seq))
+
     stream = string_to_kmers(seq, 3);
 
     t2 = time.time()
     print('string_to_kmers: ' + str(t2-t1))
     # ~0 seconds
 
-    h = minhash(stream, 5);
+    h = minhash(stream, 1);
     print(h)
 
 if __name__ == "__main__":
