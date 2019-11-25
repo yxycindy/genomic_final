@@ -1,0 +1,1 @@
+ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101015/Acanthisitta_chloris.fa.gz
