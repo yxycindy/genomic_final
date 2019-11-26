@@ -5,7 +5,8 @@ import compute_mst
 def main():
 
     # Creating edges
-    edges = {1:('a','b'), 2:('d','e'), 3:('b','e'), 4:('b','d'), 5:('b','c'), 6:('c','e')}
+#    edges = {1:('a','b'), 2:('d','e'), 3:('b','e'), 4:('b','d'), 5:('b','c'), 6:('c','e')}
+    edges = {5:('b','c'), 3:('b','e'), 4:('b','d'), 1:('a','b'), 2:('d','e'), 6:('c','e')}
 
     mst = compute_mst.kruskal(edges)
 

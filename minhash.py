@@ -19,7 +19,7 @@ def nsmallest_no_duplicates(n, iterable, count=False):
         else:
             if heap[0][0] <= key:
                 if key not in keys:
-                    keys.remove(heap[0])
+                    del keys[(heap[0])]
                     heapq.heapreplace(heap, (key, value))
                 keys[key] += 1
     if count:
