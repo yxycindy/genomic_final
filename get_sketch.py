@@ -3,42 +3,33 @@
 from minhash import *
 from io import StringIO
 import time
+import numpy as np
+import avianbase
 
 def main():
 
-    t0 = time.time()
+    link_fname = 'links1-10.txt'
+    start_idx = 0
 
-#    # Test input
-#    seq = "ACCATAGGA"
+    a = avianbase.Avianbase(filename=link_fname, out_dir='./tmp', cache=True)
 
-    # Parsing input file
-    filename = '../avianbase/Haliaeetus_leucocephalus.fa'
-    infile = open(filename, 'r')
-    sstream = StringIO()
-    for line in infile:
-        if line[0] != '>':
-#            seqlist.append(line.rstrip())
-#            seq = ''.join(seqlist)
-            sstream.write(line.rstrip())
+    birdnamefile = 'bird_names.txt'
+    birdnames = open(birdnamefile, 'r')
+    namestr = birdnames.read()
+    namelist = namestr.split('\n')
+    namelist.remove('')
 
-    seq = sstream.getvalue()
+    idx = start_idx
 
-    t1 = time.time()
+    # For minhash
+    for url, g in a:
+        stream = avianbase.kmers_from_file(g, 3)
+        m = minhash(stream, 1000)
+        print(m)
 
-    print(t1-t0)
-    # ~17.5 seconds
-    sstream.close()
-
-    print(len(seq))
-
-    stream = string_to_kmers(seq, 3);
-
-    t2 = time.time()
-    print('string_to_kmers: ' + str(t2-t1))
-    # ~0 seconds
-
-    h = minhash(stream, 1);
-    print(h)
+        outfilename = namelist[idx]
+        np.save('sketches/minhash/' + outfilename + '.npy', m)
+        idx += 1
 
 if __name__ == "__main__":
     main()
