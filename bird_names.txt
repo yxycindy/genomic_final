@@ -1,45 +1,45 @@
 Rifleman
-Peking duck
-Chuck-will's-widow
-Bar-tailed trogon
-Emperor penguin
-Grey-crowned crane
-Rhinoceros hornbill
-Anna's hummingbird
-Red-legged seriema
-Turkey vulture
-Chimney swift
+Peking_duck
+Chuck_wills_widow
+Bar_tailed_trogon
+Emperor_penguin
+Grey_crowned_crane
+Rhinoceros_hornbill
+Annas_hummingbird
+Red_legged_seriema
+Turkey_vulture
+Chimney_swift
 Killdeer
-Macqueen's bustard
-Speckled mousebird
+Macqueens_bustard
+Speckled_mousebird
 Pigeon
-American crow
-Common cuckoo
-Little egret
+American_crow
+Common_cuckoo
+Little_egret
 Sunbittern
-Peregrine falcon
-Northern fulmar
-Red-throated loon
-Medium ground finch
-White-tailed eagle
-Bald eagle
-Cuckoo-roller
-Golden-collared manakin
+Peregrine_falcon
+Northern_fulmar
+Red_throated_loon
+Medium_ground_finch
+White_tailed_eagle
+Bald_eagle
+Cuckoo_roller
+Golden_collared_manakin
 Budgerigar
-Carmine bee-eater
-Brown mesite
+Carmine_bee_eater
+Brown_mesite
 Kea
-Crested ibis
+Crested_ibis
 Hoatzin
-Dalmatian pelican
-White-tailed tropicbird
-Great cormorant
-American flamingo
-Downy woodpecker
-Great-crested grebe
-Yellow-throated sandgrouse
-Adelie penguin
-Common ostrich
-Red-crested turaco
-White-throated tinamou
-Barn owl
+Dalmatian_pelican
+White_tailed_tropicbird
+Great_cormorant
+American_flamingo
+Downy_woodpecker
+Great_crested_grebe
+Yellow_throated_sandgrouse
+Adelie_penguin
+Common_ostrich
+Red_crested_turaco
+White_throated_tinamou
+Barn_owl
