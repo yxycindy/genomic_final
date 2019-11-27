@@ -29,17 +29,17 @@ def kmers_from_file(file, k):
             prevs = [data[-(j-1):] for j in range(k-1)]
 
 class Avianbase:
-    def __init__(self, filename='links1.txt', out_dir='./tmp', cache=False):
+    def __init__(self, filename='links1.txt', out_dir='./tmp', start = 0, cache=False):
         super().__init__()
         self.links = self._load_links(filename)
         self.tmp_dir = out_dir
+        self.i = start
         self.cache = cache # Whether to keep genomes on disk in tmp folder
 
     def _load_links(self, filename):
         return open(filename).readlines()
 
     def __iter__(self):
-        self.i = 0
         return self
 
     def __next__(self):
