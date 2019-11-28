@@ -5,6 +5,7 @@ import sys
 from time import time
 from minhash import string_to_kmers
 import re
+import numpy as np
 
 def progress(count, blocksize, total_size):
     global start
@@ -29,11 +30,12 @@ def kmers_from_file(file, k):
             prevs = [data[-(j-1):] for j in range(k-1)]
 
 class Avianbase:
-    def __init__(self, filename='links1.txt', out_dir='./tmp', start = 0, cache=False):
+    def __init__(self, filename='links1.txt', out_dir='./tmp', start = 0, num=np.iinfo(np.int64).max, cache=False):
         super().__init__()
         self.links = self._load_links(filename)
         self.tmp_dir = out_dir
         self.i = start
+        self.num = num
         self.cache = cache # Whether to keep genomes on disk in tmp folder
 
     def _load_links(self, filename):
@@ -43,7 +45,7 @@ class Avianbase:
         return self
 
     def __next__(self):
-        if self.i >= len(self.links):
+        if self.i >= len(self.links) or self.i >= self.num:
             raise StopIteration
         
         if not self.cache:
