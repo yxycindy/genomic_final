@@ -8,23 +8,24 @@ import avianbase
 
 def main():
 
-    link_fname = 'links1-10.txt'
-    start_idx = 0
+    link_fname = 'avian_genome_links.txt'
+    start_idx = 5
 
-    a = avianbase.Avianbase(filename=link_fname, out_dir='./tmp', cache=True)
+    a = avianbase.Avianbase(filename=link_fname, out_dir='./tmp', start=start_idx, cache=True)
 
     birdnamefile = 'bird_names.txt'
     birdnames = open(birdnamefile, 'r')
     namestr = birdnames.read()
     namelist = namestr.split('\n')
     namelist.remove('')
+    birdnames.close()
 
     idx = start_idx
 
     # For minhash
     for url, g in a:
         stream = avianbase.kmers_from_file(g, 3)
-        m = minhash(stream, 1000)
+        m = minhash(stream, 10000)
         print(m)
 
         outfilename = namelist[idx]

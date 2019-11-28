@@ -47,7 +47,7 @@ def create_edges(birdnamefile, start_idx=0, num_birds=44):
 
 def main():
 
-    edges = create_edges('bird_names.txt', start_idx=0, num_birds=5)
+    edges = create_edges('bird_names.txt', start_idx=0, num_birds=7)
 #    print(edges)
     mst = compute_mst.kruskal(edges)
     print(mst)
