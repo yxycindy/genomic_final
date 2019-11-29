@@ -14,7 +14,7 @@ import compute_mst
       edges - multimap to be read into kruskal to create minimum spanning tree
           {edit_distance : [(seq1, seq2)]}
 '''
-def create_edges(birdnamefile, start_idx=0, num_birds=44):
+def create_edges(birdnamefile, start_idx=0, num_birds=42):
     # reading in birdname file
     birdnames = open(birdnamefile, 'r')
     namestr = birdnames.read()
@@ -27,8 +27,9 @@ def create_edges(birdnamefile, start_idx=0, num_birds=44):
     for i in range(start_idx, num_birds):
         for j in range(i+1, num_birds):
             # Loading signature files
-            f1 = 'sketches/minhash/' + namelist[i] + '.npy'
-            f2 = 'sketches/minhash/' + namelist[j] + '.npy'
+            filedir = 'sketches/minhash/marcc_sketches/'
+            f1 = filedir + namelist[i] + '.npy'
+            f2 = filedir + namelist[j] + '.npy'
             sketch1 = np.load(f1)
             sketch2 = np.load(f2)
 
@@ -47,7 +48,7 @@ def create_edges(birdnamefile, start_idx=0, num_birds=44):
 
 def main():
 
-    edges = create_edges('bird_names.txt', start_idx=0, num_birds=7)
+    edges = create_edges('bird_names.txt', start_idx=0)
 #    print(edges)
     mst = compute_mst.kruskal(edges)
     print(mst)
