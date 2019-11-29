@@ -23,7 +23,6 @@ ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101027/Haliaeetus_albi
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101040/Haliaeetus_leucocephalus.fa.gz
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101028/Leptosomus_discolor.fa.gz
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101010/Manacus_vitellinus.fa.gz
-ftp://parrot.genomics.cn/gigadb/pub/10.5524/100001_101000/100059/ap_v6.mega.fa
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101029/Merops_nubicus.fa.gz
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101030/Mesitornis_unicolor.fa.gz
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101031/Nestor_notabilis.fa.gz

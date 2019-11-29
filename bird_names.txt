@@ -23,7 +23,6 @@ White_tailed_eagle
 Bald_eagle
 Cuckoo_roller
 Golden_collared_manakin
-Budgerigar
 Carmine_bee_eater
 Brown_mesite
 Kea
