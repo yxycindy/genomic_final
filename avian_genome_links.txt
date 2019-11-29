@@ -16,7 +16,6 @@ ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101008/Corvus_brachyrh
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101009/Cuculus_canorus.fa.gz
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101002/Egretta_garzetta.fa.gz
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101024/Eurypyga_helias.fa.gz
-ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101006/peregrine.FG.2011.0223_sca.bk.fa
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101025/Fulmarus_glacialis.fa.gz
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/101001_102000/101026/Gavia_stellata.fa.gz
 ftp://parrot.genomics.cn/gigadb/pub/10.5524/100001_101000/100040/Geospiza_fortis.scaf.noBacterial.fa.gz

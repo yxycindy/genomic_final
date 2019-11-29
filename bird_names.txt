@@ -16,7 +16,6 @@ American_crow
 Common_cuckoo
 Little_egret
 Sunbittern
-Peregrine_falcon
 Northern_fulmar
 Red_throated_loon
 Medium_ground_finch
