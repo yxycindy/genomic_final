@@ -67,10 +67,10 @@ def main():
     args = get_args()
     outdir = args.out_dir
     algo = args.algo
-    start_idx = args.start_idx
-    end_idx = args.end_idx
-    h = args.num_hash
-    k = args.kmer_len
+    start_idx = int(args.start_idx)
+    end_idx = int(args.end_idx)
+    h = int(args.num_hash)
+    k = int(args.kmer_len)
 
 
     link_fname = 'avian_genome_links.txt'

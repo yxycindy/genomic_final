@@ -3,7 +3,7 @@ from collections import Counter
 import heapq
 from tqdm import tqdm
 
-def nsmallest_no_duplicates(n, iterable, count=False):
+def nsmallest_no_duplicates(n, iterable, count=False, order=False):
     """ Compute the n smallest elements WITHOUT counting duplicates 
         Optional: count the number of occurrences of the n smallest elements
     """
@@ -14,18 +14,44 @@ def nsmallest_no_duplicates(n, iterable, count=False):
         value = v[1] if isinstance(v, tuple) else v
         if len(heap) < n:
             if key not in keys:
-                heapq.heappush(heap, (key, value))
+                heapq.heappush(heap, (key, value, i))
             keys[key] += 1
         else:
             if heap[0][0] <= key:
                 if key not in keys:
                     del keys[(heap[0])]
-                    heapq.heapreplace(heap, (key, value))
+                    heapq.heapreplace(heap, (key, value, i))
                 keys[key] += 1
     if count:
-        return [(val, keys[k]) for k, val in heap]
+        return [(val, keys[k]) for k, val, i in heap]
+    elif order:
+        return [(val, i) for k, val, i in heap]
     else:
         return [val for _, val in heap]
+
+#def nsmallest_no_duplicates(n, iterable, count=False):
+#    """ Compute the n smallest elements WITHOUT counting duplicates 
+#        Optional: count the number of occurrences of the n smallest elements
+#    """
+#    keys = Counter()
+#    heap = []
+#    for i, v in enumerate(iterable):
+#        key = -v[0] if isinstance(v, tuple) else -v
+#        value = v[1] if isinstance(v, tuple) else v
+#        if len(heap) < n:
+#            if key not in keys:
+#                heapq.heappush(heap, (key, value))
+#            keys[key] += 1
+#        else:
+#            if heap[0][0] <= key:
+#                if key not in keys:
+#                    del keys[(heap[0])]
+#                    heapq.heapreplace(heap, (key, value))
+#                keys[key] += 1
+#    if count:
+#        return [(val, keys[k]) for k, val in heap]
+#    else:
+#        return [val for _, val in heap]
 
 def minhash(stream, elems):
     """ Compute the minhash signature for a generator of strings """
@@ -54,7 +80,7 @@ def order_minhash(stream, l):
     """ Compute the order minhash signature of a stream of kmers """
     """ See https://github.com/Kingsford-Group/omhismb2019/blob/master/omh_compute/omh.hpp for more details """
     m = np.ones(l, dtype=np.int64) * np.iinfo(np.int64).max
-    topl = nsmallest_no_duplicates(l, (hash(kmer) for kmer in tqdm(stream)), count=True)
+    topl = nsmallest_no_duplicates(l, (hash(kmer) for kmer in tqdm(stream)), order=True)
     # Sort topl by kmer position
     return np.array([_ for _, h in sorted(topl, key=lambda x: x[1])])
 
