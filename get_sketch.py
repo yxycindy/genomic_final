@@ -20,38 +20,42 @@ def get_args():
 
     parser.add_argument("-e", dest="end_idx", help="set the end index of the bird genome to end with from the file", required=False, default=np.iinfo(np.int64).max)
 
+    parser.add_argument("-h", dest="num_hash", help="set the number of hash functions to use", required=False, default=10000)
+
+    parser.add_argument("-k", dest="kmer_len", help="set the kmer length", required=False, default=3)
+
     args = parser.parse_args()
 
     return args
 
 
-def get_minhash_sketch(a, namelist, idx, outdir):
+def get_minhash_sketch(a, namelist, idx, outdir, h, k):
     # For minhash
     for url, g in a:
-        stream = avianbase.kmers_from_file(g, 3)
-        m = minhash(stream, 10000)
+        stream = avianbase.kmers_from_file(g, k)
+        m = minhash(stream, h)
         print(m)
 
         outfilename = namelist[idx]
         np.save(outdir + outfilename + '.npy', m)
         idx += 1
 
-def get_weighted_minhash_sketch(a, namelist, idx, outdir):
+def get_weighted_minhash_sketch(a, namelist, idx, outdir, h, k):
     # For weighted minhash
     for url, g in a:
-        stream = avianbase.kmers_from_file(g, 3)
-        m = weighted_minhash(stream, 10000)
+        stream = avianbase.kmers_from_file(g, k)
+        m = weighted_minhash(stream, h)
         print(m)
 
         outfilename = namelist[idx]
         np.save(outdir + outfilename + '.npy', m)
         idx += 1
 
-def get_order_minhash_sketch(a, namelist, idx, outdir):
+def get_order_minhash_sketch(a, namelist, idx, outdir, h, k):
     # For order minhash
     for url, g in a:
-        stream = avianbase.kmers_from_file(g, 3)
-        m = order_minhash(stream, 10000)
+        stream = avianbase.kmers_from_file(g, k)
+        m = order_minhash(stream, h)
         print(m)
 
         outfilename = namelist[idx]
@@ -65,6 +69,8 @@ def main():
     algo = args.algo
     start_idx = args.start_idx
     end_idx = args.end_idx
+    h = args.num_hash
+    k = args.kmer_len
 
 
     link_fname = 'avian_genome_links.txt'
@@ -81,11 +87,11 @@ def main():
     idx = start_idx
 
     if algo == "minhash":
-        get_minhash_sketch(a, namelist, idx, outdir)
+        get_minhash_sketch(a, namelist, idx, outdir, h, k)
     elif algo == "weighted_minhash":
-        get_weighted_minhash_sketch(a, namelist, idx, outdir)
+        get_weighted_minhash_sketch(a, namelist, idx, outdir, h, k)
     elif algo == "order_minhash":
-        get_order_minhash_sketch(a, namelist, idx, outdir)
+        get_order_minhash_sketch(a, namelist, idx, outdir, h, k)
     else:
         print("Invalid algorithm.")
 
