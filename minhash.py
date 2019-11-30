@@ -34,28 +34,43 @@ def minhash(stream, elems):
     return np.array(topk)
 
 def weighted_minhash(stream, elems):
-    """ MinHash for Jaccard similarity """
-    kmer_counts = Counter()
-    for kmer in stream:
-        kmer_counts[kmer]+=1
-    m = np.ones(elems, dtype=np.int64) * np.iinfo(np.int64).max    
-    for kmer in kmer_counts:
-        for i in range(elems):
-            m[i] = np.min([m[i], np.int64(hash(hash(kmer)+ i + kmer_counts[kmer]))])
-    return m
+    """ Compute the weighted minhash signature for a generator of strings """
+    m = np.ones(elems, dtype=np.int64) * np.iinfo(np.int64).max
+    topk = nsmallest_no_duplicates(elems, (hash(kmer) for kmer in tqdm(stream)), count=True)
+    return np.array(topk)
+
+#def weighted_minhash(stream, elems):
+#    """ MinHash for Jaccard similarity """
+#    kmer_counts = Counter()
+#    for kmer in stream:
+#        kmer_counts[kmer]+=1
+#    m = np.ones(elems, dtype=np.int64) * np.iinfo(np.int64).max    
+#    for kmer in kmer_counts:
+#        for i in range(elems):
+#            m[i] = np.min([m[i], np.int64(hash(hash(kmer)+ i + kmer_counts[kmer]))])
+#    return m
 
 def order_minhash(stream, l):
     """ Compute the order minhash signature of a stream of kmers """
     """ See https://github.com/Kingsford-Group/omhismb2019/blob/master/omh_compute/omh.hpp for more details """
-    kmers = list(stream)
-    counts = Counter()
-    for kmer in kmers:
-        counts[kmer]+=1
-    hashes = [(hash(hash(kmer) + counts[kmer]), i) for i, kmer in enumerate(kmers)]
-    heapq.heapify(hashes)
-    topl = [heapq.heappop(hashes) for _ in range(l)]
+    m = np.ones(l, dtype=np.int64) * np.iinfo(np.int64).max
+    topl = nsmallest_no_duplicates(l, (hash(kmer) for kmer in tqdm(stream)), count=True)
     # Sort topl by kmer position
-    return np.array([h for _, h in sorted(topl, key=lambda x: x[1])])
+    return np.array([_ for _, h in sorted(topl, key=lambda x: x[1])])
+
+
+#def order_minhash(stream, l):
+#    """ Compute the order minhash signature of a stream of kmers """
+#    """ See https://github.com/Kingsford-Group/omhismb2019/blob/master/omh_compute/omh.hpp for more details """
+#    kmers = list(stream)
+#    counts = Counter()
+#    for kmer in kmers:
+#        counts[kmer]+=1
+#    hashes = [(hash(hash(kmer) + counts[kmer]), i) for i, kmer in enumerate(kmers)]
+#    heapq.heapify(hashes)
+#    topl = [heapq.heappop(hashes) for _ in range(l)]
+#    # Sort topl by kmer position
+#    return np.array([h for _, h in sorted(topl, key=lambda x: x[1])])
 
 def hamming_similarity(s1, s2):
     """ Compute the hamming similarity between two signatures """
