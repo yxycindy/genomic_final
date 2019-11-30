@@ -27,7 +27,7 @@ def nsmallest_no_duplicates(n, iterable, count=False, order=False):
     elif order:
         return [(val, i) for k, val, i in heap]
     else:
-        return [val for _, val in heap]
+        return [val for _, val, i in heap]
 
 #def nsmallest_no_duplicates(n, iterable, count=False):
 #    """ Compute the n smallest elements WITHOUT counting duplicates 
