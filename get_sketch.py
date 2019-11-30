@@ -9,7 +9,7 @@ import avianbase
 def main():
 
     link_fname = 'avian_genome_links.txt'
-    start_idx = 5
+    start_idx = 25
 
     a = avianbase.Avianbase(filename=link_fname, out_dir='./tmp', start=start_idx, cache=True)
 
