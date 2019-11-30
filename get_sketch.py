@@ -20,7 +20,7 @@ def get_args():
 
     parser.add_argument("-e", dest="end_idx", help="set the end index of the bird genome to end with from the file", required=False, default=np.iinfo(np.int64).max)
 
-    parser.add_argument("-h", dest="num_hash", help="set the number of hash functions to use", required=False, default=10000)
+    parser.add_argument("-n", dest="num_hash", help="set the number of hash functions to use", required=False, default=10000)
 
     parser.add_argument("-k", dest="kmer_len", help="set the kmer length", required=False, default=3)
 
