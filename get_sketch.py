@@ -77,7 +77,7 @@ def main():
 
     a = avianbase.Avianbase(filename=link_fname, out_dir='./tmp', start=start_idx, end=end_idx, cache=True)
 
-    birdnamefile = args.link_fname
+    birdnamefile = 'bird_names.txt'
     birdnames = open(birdnamefile, 'r')
     namestr = birdnames.read()
     namelist = namestr.split('\n')
