@@ -7,4 +7,6 @@
 
 module load python/3.6-anaconda
 
-PYTHONHASHSEED=0 python3 get_sketch.py -f avian_genome_links.txt -o sketches/weighted_minhash/marcc_sketches/ -a weighted_minhash
+#PYTHONHASHSEED=0 python3 get_sketch.py -f avian_genome_links.txt -o sketches/weighted_minhash/marcc_sketches/ -a weighted_minhash
+
+PYTHONHASHSEED=0 python3 get_sketch.py -f avian_genome_links.txt -o sketches/order_minhash/marcc_sketches/ -a order_minhash
