@@ -3,42 +3,97 @@
 from minhash import *
 from io import StringIO
 import time
+import numpy as np
+import avianbase
+import argparse
+
+def get_args():
+    parser = argparse.ArgumentParser(description='Create the sketches for given bird genomes.')
+
+    parser.add_argument("-f", dest="link_fname", help="set file with links to genome files.", required=False, default="avian_genome_links.txt")
+
+    parser.add_argument("-o", dest="out_dir", help="set the output directory for the sketches.", required=True)
+
+    parser.add_argument("-a", dest="algo", help="set the desired algorithm: 'minhash', 'weighted_minhash', 'order_minhash'", required=True)
+
+    parser.add_argument("-s", dest="start_idx", help="set the start index of the bird genome to start with from the file", required=False, default=0)
+
+    parser.add_argument("-e", dest="end_idx", help="set the end index of the bird genome to end with from the file", required=False, default=np.iinfo(np.int64).max)
+
+    parser.add_argument("-n", dest="num_hash", help="set the number of hash functions to use", required=False, default=10000)
+
+    parser.add_argument("-k", dest="kmer_len", help="set the kmer length", required=False, default=3)
+
+    args = parser.parse_args()
+
+    return args
+
+
+def get_minhash_sketch(a, namelist, idx, outdir, h, k):
+    # For minhash
+    for url, g in a:
+        stream = avianbase.kmers_from_file(g, k)
+        m = minhash(stream, h)
+        print(m)
+
+        outfilename = namelist[idx]
+        np.save(outdir + outfilename + '.npy', m)
+        idx += 1
+
+def get_weighted_minhash_sketch(a, namelist, idx, outdir, h, k):
+    # For weighted minhash
+    for url, g in a:
+        stream = avianbase.kmers_from_file(g, k)
+        m = weighted_minhash(stream, h)
+        print(m)
+
+        outfilename = namelist[idx]
+        np.save(outdir + outfilename + '.npy', m)
+        idx += 1
+
+def get_order_minhash_sketch(a, namelist, idx, outdir, h, k):
+    # For order minhash
+    for url, g in a:
+        stream = avianbase.kmers_from_file(g, k)
+        m = order_minhash(stream, h)
+        print(m)
+
+        outfilename = namelist[idx]
+        np.save(outdir + outfilename + '.npy', m)
+        idx += 1
 
 def main():
 
-    t0 = time.time()
+    args = get_args()
+    outdir = args.out_dir
+    algo = args.algo
+    start_idx = int(args.start_idx)
+    end_idx = int(args.end_idx)
+    h = int(args.num_hash)
+    k = int(args.kmer_len)
 
-#    # Test input
-#    seq = "ACCATAGGA"
 
-    # Parsing input file
-    filename = '../avianbase/Haliaeetus_leucocephalus.fa'
-    infile = open(filename, 'r')
-    sstream = StringIO()
-    for line in infile:
-        if line[0] != '>':
-#            seqlist.append(line.rstrip())
-#            seq = ''.join(seqlist)
-            sstream.write(line.rstrip())
+    link_fname = 'avian_genome_links.txt'
 
-    seq = sstream.getvalue()
+    a = avianbase.Avianbase(filename=link_fname, out_dir='./tmp', start=start_idx, end=end_idx, cache=True)
 
-    t1 = time.time()
+    birdnamefile = 'bird_names.txt'
+    birdnames = open(birdnamefile, 'r')
+    namestr = birdnames.read()
+    namelist = namestr.split('\n')
+    namelist.remove('')
+    birdnames.close()
 
-    print(t1-t0)
-    # ~17.5 seconds
-    sstream.close()
+    idx = start_idx
 
-    print(len(seq))
-
-    stream = string_to_kmers(seq, 3);
-
-    t2 = time.time()
-    print('string_to_kmers: ' + str(t2-t1))
-    # ~0 seconds
-
-    h = minhash(stream, 1);
-    print(h)
+    if algo == "minhash":
+        get_minhash_sketch(a, namelist, idx, outdir, h, k)
+    elif algo == "weighted_minhash":
+        get_weighted_minhash_sketch(a, namelist, idx, outdir, h, k)
+    elif algo == "order_minhash":
+        get_order_minhash_sketch(a, namelist, idx, outdir, h, k)
+    else:
+        print("Invalid algorithm.")
 
 if __name__ == "__main__":
     main()
