@@ -48,8 +48,9 @@ def kruskal(edges):
                 connection_ids[start][0] = setnum
                 # need to manually loop through to link all nodes in the
                 # components that are being joined
-                for c in connection_ids:
-                    if connection_ids[c][0] == connection_ids[end][0]:
+                orig = connection_ids[end][0]
+                for c in connection_ids.keys():
+                    if connection_ids[c][0] == orig:
                         connection_ids[c] = connection_ids[start]
                 setnum += 1
 
