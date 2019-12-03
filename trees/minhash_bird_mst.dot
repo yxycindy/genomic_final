@@ -47,10 +47,8 @@ strict graph {
   "Emperor_penguin" -- "Rifleman" [label="0.9997"];
   "Emperor_penguin" -- "Chimney_swift" [label="0.9997"];
   "Emperor_penguin" -- "Common_cuckoo" [label="0.9997"];
-  "Emperor_penguin" -- "Little_egret" [label="0.9997"];
   "Emperor_penguin" -- "Sunbittern" [label="0.9997"];
   "Emperor_penguin" -- "Red_throated_loon" [label="0.9997"];
-  "Emperor_penguin" -- "Golden_collared_manakin" [label="0.9997"];
   "Emperor_penguin" -- "Great_cormorant" [label="0.9997"];
   "Chimney_swift" -- "Little_egret" [label="0.9996"];
   "Chimney_swift" -- "Annas_hummingbird" [label="0.9997"];
@@ -58,7 +56,6 @@ strict graph {
   "Common_cuckoo" -- "Golden_collared_manakin" [label="0.9996"];
   "Red_crested_turaco" -- "White_throated_tinamou" [label="0.9996"];
   "Red_crested_turaco" -- "Rifleman" [label="0.9997"];
-  "White_throated_tinamou" -- "Rifleman" [label="0.9997"];
   "Rifleman" -- "Macqueens_bustard" [label="0.9997"];
   "Rifleman" -- "American_crow" [label="0.9997"];
   "Rifleman" -- "Downy_woodpecker" [label="0.9997"];
@@ -72,9 +69,7 @@ strict graph {
   "Rifleman" -- "Pigeon" [label="0.9998"];
   "Rifleman" -- "Northern_fulmar" [label="0.9998"];
   "Rifleman" -- "Medium_ground_finch" [label="0.9998"];
-  "Rifleman" -- "Cuckoo_roller" [label="0.9998"];
   "Rifleman" -- "Carmine_bee_eater" [label="0.9998"];
-  "Rifleman" -- "Brown_mesite" [label="0.9998"];
   "Rifleman" -- "Kea" [label="0.9998"];
   "Rifleman" -- "Dalmatian_pelican" [label="0.9998"];
   "Rifleman" -- "White_tailed_tropicbird" [label="0.9998"];
