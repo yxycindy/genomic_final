@@ -1,6 +1,9 @@
 import random
 from random import seed
 from random import randint
+import networkx as nx
+import matplotlib.pyplot as plt
+
 
 
 # cparent = "GTTGATAAGCAAGCATCTCATTTTGTGCATATACCTGGTCTTTCGTATTCTGGCGTGAAGTCGCCGNCTGAATGCCAGCAATCTCTTTTTGAGTCTCATT"
@@ -11,6 +14,7 @@ depth = 2
 base = ['A', 'T', 'G', 'C']
 genome_list = []
 seed(5)
+G = nx.DiGraph()
 
 def generate_genome():
 # mutate the parent genome for every child 
@@ -34,6 +38,8 @@ def generate_genome():
 				genome_list.append(new_child)
 				cur_list.append(new_child)
 
+				#add item->child edge
+				G.add_edges_from([(item, new_child)])
 
 
 
@@ -58,3 +64,9 @@ def generate_graph():
 
 
 generate_genome()
+pos = nx.kamada_kawai_layout(G)
+nx.draw_networkx_nodes(G, pos, cmap=plt.get_cmap('jet'),node_size = 500)
+nx.draw_networkx_labels(G, pos)
+nx.draw_networkx_edges(G, pos, edgelist=G.edges(), edge_color='b', arrows=True)
+# nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=True)
+plt.show()
