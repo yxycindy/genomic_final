@@ -73,19 +73,23 @@ def visualize_graph(mst):
 
     return outstr
 
-def main():
-
-    sketchdir = 'sketches/minhash/marcc_sketches/'
-    algorithm = 'minhash'
+def create_dot(sketchdir, algorithm):
     edges = create_edges('bird_names.txt', sketch_dir=sketchdir, algo=algorithm, start_idx=0)
 #    print(edges)
     mst = compute_mst.kruskal(edges)
-    print(mst)
+#    print(mst)
 
     outstr = visualize_graph(mst)
-    outfile = open('minhash_bird_mst.dot', 'w')
+    outfile = open('trees/' + algorithm + '_bird_mst.dot', 'w')
     outfile.write(outstr)
     outfile.close()
+
+def main():
+    # Params for creating graph for minhash
+    sketchdir = 'sketches/minhash/marcc_sketches/'
+    algorithm = 'minhash'
+    create_dot(sketchdir, algorithm)
+
 
 if __name__ == "__main__":
     main()
