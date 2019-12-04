@@ -139,19 +139,20 @@ def jaccard_hash(ha, hb):
 
 def weighted_jaccard_hash(ha, hb):
     """ Compute the weighted jaccard similarity between two multisets """
-    union = set(ha).union(hb)
-    ha = Counter(ha)
-    hb = Counter(hb)
 
+    ka = {k : v for k, v in ha}
+    kb = {k : v for k, v in hb}
+
+    union = set(ka.keys()).union(kb.keys())
     intersection_count = 0
     union_count = 0
     for k in union:
-        if k in ha and k in hb: # In intersection
-            intersection_count += max(ha[k], hb[k])
-            union_count += max(ha[k], hb[k])
+        if k in ka and k in kb: # In intersection
+            intersection_count += max(ka[k], kb[k])
+            union_count += max(ka[k], kb[k])
         else:
-            if k in ha:
-                union_count += ha[k]
+            if k in ka:
+                union_count += ka[k]
             else:
-                union_count += hb[k]
+                union_count += kb[k]
     return intersection_count / union_count
