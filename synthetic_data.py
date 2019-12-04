@@ -26,14 +26,14 @@ def generate_genome():
 
 	for i in range(depth):
 		child_list, cur_list = cur_list, []
-		print("*************")
+		# print("*************")
 		for item in child_list:
-			print("-------------")
+			# print("-------------")
 			# generate child for every genome
 			for j in range(randint(2, 8)):
 				pos_to_change = randint(0, len(item)-1)
 				new_child = mutate(pos_to_change, item)
-				print(new_child)
+				# print(new_child)
 				# append new chile to list and trees
 				genome_list.append(new_child)
 				cur_list.append(new_child)
@@ -64,6 +64,7 @@ def generate_graph():
 
 
 generate_genome()
+print(genome_list)
 pos = nx.kamada_kawai_layout(G)
 nx.draw_networkx_nodes(G, pos, cmap=plt.get_cmap('jet'),node_size = 500)
 nx.draw_networkx_labels(G, pos)
