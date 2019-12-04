@@ -25,58 +25,35 @@ def nsmallest_no_duplicates(n, iterable, count=False, order=False):
     if count:
         return [(val, keys[k]) for k, val, i in heap]
     elif order:
-        return [(val, i) for k, val, i in heap]
+        return [((val, keys[k]), i) for k, val, i in heap]
     else:
         return [val for _, val, i in heap]
 
-#def nsmallest_no_duplicates(n, iterable, count=False):
-#    """ Compute the n smallest elements WITHOUT counting duplicates 
-#        Optional: count the number of occurrences of the n smallest elements
-#    """
-#    keys = Counter()
-#    heap = []
-#    for i, v in enumerate(iterable):
-#        key = -v[0] if isinstance(v, tuple) else -v
-#        value = v[1] if isinstance(v, tuple) else v
-#        if len(heap) < n:
-#            if key not in keys:
-#                heapq.heappush(heap, (key, value))
-#            keys[key] += 1
-#        else:
-#            if heap[0][0] <= key:
-#                if key not in keys:
-#                    del keys[(heap[0])]
-#                    heapq.heapreplace(heap, (key, value))
-#                keys[key] += 1
-#    if count:
-#        return [(val, keys[k]) for k, val in heap]
-#    else:
-#        return [val for _, val in heap]
-
 def minhash(stream, elems):
     """ Compute the minhash signature for a generator of strings """
-    m = np.ones(elems, dtype=np.int64) * np.iinfo(np.int64).max
     topk = nsmallest_no_duplicates(elems, (hash(kmer) for kmer in tqdm(stream)))
     return np.array(topk)
 
 def weighted_minhash(stream, elems):
     """ Compute the weighted minhash signature for a generator of strings """
-    m = np.ones(elems, dtype=np.int64) * np.iinfo(np.int64).max
     topk = nsmallest_no_duplicates(elems, (hash(kmer) for kmer in tqdm(stream)), count=True)
     return np.array(topk)
 
 def order_minhash(stream, l):
     """ Compute the order minhash signature of a stream of kmers """
     """ See https://github.com/Kingsford-Group/omhismb2019/blob/master/omh_compute/omh.hpp for more details """
-    m = np.ones(l, dtype=np.int64) * np.iinfo(np.int64).max
     topl = nsmallest_no_duplicates(l, (hash(kmer) for kmer in tqdm(stream)), order=True)
     # Sort topl by kmer position
-    return np.array([_ for _, h in sorted(topl, key=lambda x: x[1])])
+    return np.array([tup for tup, h in sorted(topl, key=lambda x: x[1])])
 
 def hamming_similarity(s1, s2):
     """ Compute the hamming similarity between two signatures """
-    assert s1.shape == s2.shape
-    return sum(s1 == s2) / s1.shape[0]
+    count = 0
+    for i in range(min(len(s1), len(s2))):
+        if (s1[i] == s2[i]).all():
+            count += 1
+
+    return count / max(len(s1), len(s2))
 
 def string_to_kmers(s, k):
     """" Get the kmer generator from a string """

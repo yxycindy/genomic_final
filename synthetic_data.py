@@ -3,6 +3,7 @@ from random import seed
 from random import randint
 import networkx as nx
 import matplotlib.pyplot as plt
+plt.switch_backend('agg')
 
 
 
@@ -70,4 +71,4 @@ nx.draw_networkx_nodes(G, pos, cmap=plt.get_cmap('jet'),node_size = 500)
 nx.draw_networkx_labels(G, pos)
 nx.draw_networkx_edges(G, pos, edgelist=G.edges(), edge_color='b', arrows=True)
 # nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=True)
-plt.show()
+plt.savefig('synthetic_tree.png')
