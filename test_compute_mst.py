@@ -2,7 +2,7 @@
 
 import compute_mst
 
-def main():
+def test_compute_mst():
 
     # Creating edges
 #    edges = {1:('a','b'), 2:('d','e'), 3:('b','e'), 4:('b','d'), 5:('b','c'), 6:('c','e')}
@@ -20,6 +20,3 @@ def main():
     assert(mst['e'] == {'d': 2, 'b': 3})
 
     print('Tests passed')
-
-if __name__ == "__main__":
-    main()
