@@ -4,6 +4,7 @@
 import numpy as np
 import minhash
 import compute_mst
+from tqdm import tqdm
 
 ''' Creates map of edges to be input to kruskal
     Parameters:
@@ -24,6 +25,7 @@ def create_edges(birdnamefile, sketch_dir, algo, start_idx=0, num_birds=42):
 
     edges = {}
 
+#    with tqdm(total=num_birds*(num_birds-1)/2) as pbar:
     for i in range(start_idx, num_birds):
         for j in range(i+1, num_birds):
             # Loading signature files
@@ -48,7 +50,14 @@ def create_edges(birdnamefile, sketch_dir, algo, start_idx=0, num_birds=42):
                     edges[jaccard_dist] = [(namelist[i], namelist[j])]
                 else:
                     edges[jaccard_dist].append((namelist[i], namelist[j]))
-            
+            elif algo == 'order_minhash':
+                edit_dist = 1-minhash.hamming_similarity(sketch1, sketch2)
+                if edit_dist not in edges.keys():
+                    edges[edit_dist] = [(namelist[i], namelist[j])]
+                else:
+                    edges[edit_dist].append((namelist[i], namelist[j]))
+#                pbar.update(1)
+
 #            print(jaccard)
 #            print(namelist[i] + ' ' + namelist[j])
 
@@ -86,8 +95,8 @@ def create_dot(sketchdir, algorithm):
 
 def main():
     # Params for creating graph for minhash
-    sketchdir = 'sketches/minhash/marcc_sketches/'
-    algorithm = 'minhash'
+    sketchdir = 'sketches/order_minhash/marcc_sketches/'
+    algorithm = 'order_minhash'
     create_dot(sketchdir, algorithm)
 
 
