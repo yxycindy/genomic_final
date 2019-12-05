@@ -3,8 +3,6 @@ def tree_similarity(ground_truth, t):
 
     gt_pairs = set((k, v) for k, x in ground_truth.items() for v, _ in x.items())
     t_pairs = set((k, v) for k, x in t.items() for v, _ in x.items())
-    print(gt_pairs)
-    print(t_pairs)
     c = 0
     for edge in t_pairs:
         if edge in gt_pairs:
