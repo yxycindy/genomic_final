@@ -1,5 +1,5 @@
 # Faster Phylogenomics with Sketching
-Christian Cosgrove, Xingyi Yang, Jenna Ballard, Shuhao Lai
+Christian Cosgrove, Xingyi Yang, Jenna Ballard, Shuhao Lai\
 Computational Genomics Fall 2019
 
 # Directions for Running Code
