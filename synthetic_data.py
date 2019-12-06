@@ -3,24 +3,25 @@ from random import seed
 from random import randint
 import networkx as nx
 import matplotlib.pyplot as plt
-plt.switch_backend('agg')
 
 
 
 # cparent = "GTTGATAAGCAAGCATCTCATTTTGTGCATATACCTGGTCTTTCGTATTCTGGCGTGAAGTCGCCGNCTGAATGCCAGCAATCTCTTTTTGAGTCTCATT"
 # cparent = "GTTGATAAGCAAGCA"
-cparent = "ATGC"
-# length = len(cparent)
-depth = 2
-base = ['A', 'T', 'G', 'C']
-genome_list = []
-seed(5)
+# cparent = "ATGC"
+
+# depth = 5
+# seed(5)
 G = nx.DiGraph()
 
 def generate_genome():
 # mutate the parent genome for every child 
 # output a list of genome
-
+	# cparent = "GTTGAT"
+	cparent = "ATGC"
+	depth = 2
+	seed(5)
+	genome_list = []
 	child_list = []
 	cur_list = [cparent]
 	genome_list.append(cparent)
@@ -42,9 +43,11 @@ def generate_genome():
 				#add item->child edge
 				G.add_edges_from([(item, new_child)])
 
-
+	return genome_list
 
 def mutate(pos, item):
+	base = ['A', 'T', 'G', 'C']
+	# seed(5)
 	num = randint(0, 2)
 	if num == 0:
 		#insert
@@ -65,10 +68,10 @@ def generate_graph():
 
 
 generate_genome()
-print(genome_list)
+# print(genome_list)
 pos = nx.kamada_kawai_layout(G)
 nx.draw_networkx_nodes(G, pos, cmap=plt.get_cmap('jet'),node_size = 500)
 nx.draw_networkx_labels(G, pos)
 nx.draw_networkx_edges(G, pos, edgelist=G.edges(), edge_color='b', arrows=True)
 # nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=True)
-plt.savefig('synthetic_tree.png')
+plt.show()
