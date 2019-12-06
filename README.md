@@ -33,7 +33,7 @@ Sample: For creating a tree from the `weighted_minhash` sketches:
 `python3 create_tree.py -f sketches/weighted_minhash/marcc_sketches/ -o trees/ -a weighted_minhash`
 
 ## To run unit tests
-`pytest`
+To ensure that our core sketching algorithms and helper functions were working properly, we wrote unit tests. To run unit tests, simply use `pytest`.
 
 # link to google drive 
 https://drive.google.com/drive/folders/1CdZuMulag5o9lIDH0NRrwnyY6y62\_LUJ?usp=sharing
