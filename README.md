@@ -21,10 +21,11 @@ PYTHONHASHSEED=0 python3 get\_sketch.py -f avian\_genome\_links.txt -o sketches/
 It takes about 23-25 minutes to compute a sketch for a single bird genome. We also provided the sketches that we have computed so that you can run the rest of the code and reproduce our results.
 
 ## To compute minimum spanning tree from sketches and  .dot file
-Once sketches have been created, to compute the minimum spanning tree and .dot file,
+Once sketches have been created, to compute the minimum spanning tree and output
+    .dot and .png files
 run create\_tree.py with the following arguments:
     -f directory containing the sketches
-    -o output directory for the .dot file
+    -o output directory for the .dot and .png files
     -a algorithm (minhash, weighted_minhash, order_minhash)
 
 Sample: For creating a tree from the weighted\_minhash sketches:
