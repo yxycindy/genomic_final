@@ -1,8 +1,10 @@
-# genomic\_final
+# Faster Phylogenomics with Sketching
+## Christian Cosgrove, Xingyi Yang, Jenna Ballard, Shuhao Lai
+## Computational Genomics Fall 2019
 
 # Directions for Running Code
 
-# To compute sketches for Avianbase bird genomes
+## To compute sketches for Avianbase bird genomes
 Run get\_sketch.py with the following arguments:
     -f filename with URLs to the Avianbase genomes
     -o output directory for sketches
@@ -18,7 +20,7 @@ PYTHONHASHSEED=0 python3 get\_sketch.py -f avian\_genome\_links.txt -o sketches/
 
 It takes about 23-25 minutes to compute a sketch for a single bird genome. We also provided the sketches that we have computed so that you can run the rest of the code and reproduce our results.
 
-# To compute minimum spanning tree from sketches and  .dot file
+## To compute minimum spanning tree from sketches and  .dot file
 Once sketches have been created, to compute the minimum spanning tree and .dot file,
 run create\_tree.py with the following arguments:
     -f directory containing the sketches
