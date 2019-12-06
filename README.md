@@ -6,12 +6,12 @@ Computational Genomics Fall 2019
 
 ## To compute sketches for Avianbase bird genomes
 Run `get\_sketch.py` with the following arguments:
-    `-f` filename with URLs to the Avianbase genomes
-    `-o` output directory for sketches
-    `-a` algorithm (minhash, weighted_minhash, order_minhash)
-    `-s` start index in bird genome file for which to compute sketch
+- `-f` filename with URLs to the Avianbase genomes
+- `-o` output directory for sketches
+- `-a` algorithm (minhash, weighted_minhash, order_minhash)
+- `-s` start index in bird genome file for which to compute sketch
        (this is in case you want to get the sketches for a specific subset of the bird genomes)
-    `-e` end index in bird genome file for which to compute sketch
+- `-e` end index in bird genome file for which to compute sketch
        (to get sketches for subset of bird genomes ending at end index, inclusive)
 
 Sample: For running minhash on the first bird genome (to compute sketches for all 42 genomes, exclude the -s and -e flags):
