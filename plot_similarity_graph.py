@@ -39,22 +39,19 @@ def get_edit_distance_res(g1, g2):
     return edit_similarity(g1, g2)
 
 
-def get_minhash_res(g1, g2, sketch_size=SKETCH_SIZE):
+def get_minhash_res(g1, g2, sketch_size=SKETCH_SIZE, kmer_length=KMER_LENGTH):
     '''get the edit distance for every genome parit in synthetic data'''
-    return jaccard_hash(minhash(string_to_kmers(g1, KMER_LENGTH), sketch_size), minhash(string_to_kmers(g2, KMER_LENGTH), sketch_size))
+    return jaccard_hash(minhash(string_to_kmers(g1, kmer_length), sketch_size), minhash(string_to_kmers(g2, kmer_length), sketch_size))
 
-def get_weighted_minhash_res(g1, g2):
+def get_weighted_minhash_res(g1, g2, sketch_size=SKETCH_SIZE, kmer_length=KMER_LENGTH):
     '''get the edit distance for every genome parit in synthetic data'''
-    return weighted_jaccard_hash(weighted_minhash(string_to_kmers(g1, KMER_LENGTH), SKETCH_SIZE), weighted_minhash(string_to_kmers(g2, KMER_LENGTH), SKETCH_SIZE))
+    return weighted_jaccard_hash(weighted_minhash(string_to_kmers(g1, kmer_length), sketch_size), weighted_minhash(string_to_kmers(g2, kmer_length), sketch_size))
 
-def get_order_minhash_res(g1, g2):
+def get_order_minhash_res(g1, g2, sketch_size=SKETCH_SIZE, kmer_length=KMER_LENGTH):
     '''get the edit distance for every genome parit in synthetic data'''
-    s1 = order_minhash(string_to_kmers(g1, KMER_LENGTH), SKETCH_SIZE)
-    s2 = order_minhash(string_to_kmers(g2, KMER_LENGTH), SKETCH_SIZE)
-
-    s1 = [hash(tuple(x)) for x in s1]
-    s2 = [hash(tuple(x)) for x in s2]
-    return edit_similarity(s1, s2)
+    s1 = order_minhash(string_to_kmers(g1, kmer_length), sketch_size)
+    s2 = order_minhash(string_to_kmers(g2, kmer_length), sketch_size)
+    return hamming_similarity(s1, s2)
 
 
 def gen_methods_comparison():
@@ -100,14 +97,38 @@ def gen_sketch_size_comparison():
     for distances in vals:
         plt.scatter(edit_dis_list, distances, s=1)
     plt.title('Varying sketch size')
-    plt.legend(['MinHash k={}'.format(k) for k in sketch_size_range])
+    plt.legend(['MinHash $m$={}'.format(k) for k in sketch_size_range])
     plt.ylabel('Similarity estimate')
     plt.xlabel('True edit similarity')
     plt.savefig('sketch_size_comparison.png') 
 
+def gen_kmer_length_comparison():
+    
+    N = 20
+    genome = gen_string_universe(30, 40, N, N*1000)
+
+    sketch_size_range = [2, 3, 4, 6, 8]
+    vals = [[] for _ in sketch_size_range]
+    edit_dis_list = []
+
+    for _ in tqdm(range(5000)):
+        g1 = choice(genome)
+        g2 = choice(genome)
+        edit_dis_list.append(get_edit_distance_res(g1, g2))
+        for i, sketch_size in enumerate(sketch_size_range):
+            vals[i].append(get_minhash_res(g1, g2, kmer_length=sketch_size))
+    for distances in vals:
+        plt.scatter(edit_dis_list, distances, s=1)
+    plt.title('Varying $k$-mer length')
+    plt.legend(['MinHash $k$={}'.format(k) for k in sketch_size_range])
+    plt.ylabel('Similarity estimate')
+    plt.xlabel('True edit similarity')
+    plt.savefig('kmer_length_comparison.png') 
+
 def main():
     gen_methods_comparison()
     gen_sketch_size_comparison()
+    gen_kmer_length_comparison()
 
 if __name__=="__main__":
     main()
