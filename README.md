@@ -31,13 +31,11 @@ Sample: For creating a tree from the weighted\_minhash sketches:
 
 python3 create\_tree.py -f sketches/weighted\_minhash/marcc\_sketches/ -o trees/ -a weighted\_minhash
 
+## To run unit tests
+`pytest`
+
 # link to google drive 
 https://drive.google.com/drive/folders/1CdZuMulag5o9lIDH0NRrwnyY6y62\_LUJ?usp=sharing
-
-
-# Getting started
-Run tests
-`pytest`
 
 
 # TODO 
