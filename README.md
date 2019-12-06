@@ -5,6 +5,7 @@ Computational Genomics Fall 2019
 # Directions for Running Code
 
 ## To compute sketches for Avianbase bird genomes
+**Warning: this takes a long time (~24 hours).**
 Run `get_sketch.py` with the following arguments:
 - `-f` filename with URLs to the Avianbase genomes
 - `-o` output directory for sketches
