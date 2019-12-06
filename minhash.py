@@ -31,18 +31,18 @@ def nsmallest_no_duplicates(n, iterable, count=False, order=False):
 
 def minhash(stream, elems):
     """ Compute the minhash signature for a generator of strings """
-    topk = nsmallest_no_duplicates(elems, (hash(kmer) for kmer in tqdm(stream)))
+    topk = nsmallest_no_duplicates(elems, (hash(kmer) for kmer in stream))
     return np.array(topk)
 
 def weighted_minhash(stream, elems):
     """ Compute the weighted minhash signature for a generator of strings """
-    topk = nsmallest_no_duplicates(elems, (hash(kmer) for kmer in tqdm(stream)), count=True)
+    topk = nsmallest_no_duplicates(elems, (hash(kmer) for kmer in stream), count=True)
     return np.array(topk)
 
 def order_minhash(stream, l):
     """ Compute the order minhash signature of a stream of kmers """
     """ See https://github.com/Kingsford-Group/omhismb2019/blob/master/omh_compute/omh.hpp for more details """
-    topl = nsmallest_no_duplicates(l, (hash(kmer) for kmer in tqdm(stream)), order=True)
+    topl = nsmallest_no_duplicates(l, (hash(kmer) for kmer in stream), order=True)
     # Sort topl by kmer position
     return np.array([tup for tup, h in sorted(topl, key=lambda x: x[1])])
 

@@ -4,9 +4,10 @@ from compute_mst import *
 from minhash import *
 from synthetic_data import *
 from create_tree import visualize_graph
+import matplotlib.pyplot as plt
 
 # get the synthetic data 
-syn_genome = generate_genome()
+# syn_genome = generate_genome()
 KMER_LENGTH=2
 SKETCH_SIZE=10
 
@@ -21,10 +22,10 @@ def edit_distance_G():
 	# compute MST 
 	mst = kruskal(edges)
 
-	outstr = visualize_graph(mst)
-	outfile = open('trees/' + 'edit_dis' + '_bird_mst.dot', 'w')
-	outfile.write(outstr)
-	outfile.close()
+	# outstr = visualize_graph(mst)
+	# outfile = open('trees/' + 'edit_dis' + '_bird_mst.dot', 'w')
+	# outfile.write(outstr)
+	# outfile.close()
 
 
 
@@ -39,10 +40,10 @@ def get_minhash_G():
 	# compute MST 
 	mst = kruskal(edges)
 
-	outstr = visualize_graph(mst)
-	outfile = open('trees/' + 'minhashtest' + '_bird_mst.dot', 'w')
-	outfile.write(outstr)
-	outfile.close()
+	# outstr = visualize_graph(mst)
+	# outfile = open('trees/' + 'minhashtest' + '_bird_mst.dot', 'w')
+	# outfile.write(outstr)
+	# outfile.close()
 
 
 def get_weighted_minhash_G():
@@ -68,26 +69,47 @@ def get_order_minhash_G():
 	mst = kruskal(edges)
 	# return hamming_similarity(order_minhash(string_to_kmers(g1, KMER_LENGTH), SKETCH_SIZE), order_minhash(string_to_kmers(g2, KMER_LENGTH), SKETCH_SIZE)
 
-start = timeit.default_timer()
-edit_distance_G()
-stop = timeit.default_timer()
-print('Time for edit distance: ', stop - start) 
+edit_dis_list = []
+minhash_list = []
+weighted_minhash_list = []
+order_minhash_list = []
+d = []
+
+for depth in range(2, 6):
+    d.append(depth)
+    syn_genome = generate_genome(depth)
+    start = timeit.default_timer()
+    edit_distance_G()
+    stop = timeit.default_timer()
+    edit_dis_list.append(stop - start)
+    print('Time for edit distance: ', stop - start) 
 
 
-start = timeit.default_timer()
-get_minhash_G()
-stop = timeit.default_timer()
-print('Time for minhash: ', stop - start) 
+    start = timeit.default_timer()
+    get_minhash_G()
+    stop = timeit.default_timer()
+    minhash_list.append(stop - start)
+    print('Time for minhash: ', stop - start) 
 
-start = timeit.default_timer()
-get_weighted_minhash_G()
-stop = timeit.default_timer()
-print('Time for weighted_minhash: ', stop - start) 
+    start = timeit.default_timer()
+    get_weighted_minhash_G()
+    stop = timeit.default_timer()
+    weighted_minhash_list.append(stop - start)
+    print('Time for weighted_minhash: ', stop - start) 
 
-start = timeit.default_timer()
-get_order_minhash_G()
-stop = timeit.default_timer()
-print('Time for order_minhash: ', stop - start) 
+    start = timeit.default_timer()
+    get_order_minhash_G()
+    stop = timeit.default_timer()
+    order_minhash_list.append(stop - start)
+    print('Time for order_minhash: ', stop - start) 
 
 
-
+plt.plot(d, edit_dis_list, label='edit dis')
+plt.plot(d, minhash_list, label='minhash')
+plt.plot(d, weighted_minhash_list, label='weighted minhash')
+plt.plot(d, order_minhash_list, label='ordered minhash')
+plt.xlabel('Depth of the synthetic tree')
+plt.ylabel('time in seconds to generate tree')
+plt.legend()
+# plt.savefig('test^^^^^.png') 
+plt.show()
