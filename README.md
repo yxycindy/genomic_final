@@ -11,11 +11,11 @@ Run tests
 
 # TODO 
 
-1. Edit distance correlation. In `edit_distance_correlation.py`, generate a bunch of random strings and measure their true edit distances and similarities according to MinHash, Weighted MinHash, and Order MinHash. Make a scatter plot (estimated similarity vs true edit distance).
 3. Compute trees for Order MinHash and Weighted MinHash on Avianbase and synthetic data.
 
 4. Compare Avianbase trees with BirdTree.org
 
 5. Write better readme. In particular, instructions about how to run code (+ unit tests).
+ Use conda environment to install pip/conda dependencies easily!
 
 6. Write paper!
