@@ -1,0 +1,29 @@
+strict graph {
+  "ATGC";
+  "ATGGCC";
+  "ATAC";
+  "ATGAC";
+  "AGTGC";
+  "ATGCC";
+  "ATTAC";
+  "ATA";
+  "ATGAAC";
+  "ACGAC";
+  "AATGAC";
+  "ATGTGC";
+  "ACGCC";
+  "ATGTCC";
+  "ATGC" -- "ATAC" [label="1"];
+  "ATGC" -- "ATGAC" [label="1"];
+  "ATGC" -- "AGTGC" [label="1"];
+  "ATGC" -- "ATGCC" [label="1"];
+  "ATGGCC" -- "ATGCC" [label="1"];
+  "ATAC" -- "ATTAC" [label="1"];
+  "ATAC" -- "ATA" [label="1"];
+  "ATGAC" -- "ATGAAC" [label="1"];
+  "ATGAC" -- "ACGAC" [label="1"];
+  "ATGAC" -- "AATGAC" [label="1"];
+  "AGTGC" -- "ATGTGC" [label="1"];
+  "ATGCC" -- "ACGCC" [label="1"];
+  "ATGCC" -- "ATGTCC" [label="1"];
+}
