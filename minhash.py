@@ -100,7 +100,7 @@ def weighted_jaccard_hash(ha, hb):
     union_count = 0
     for k in union:
         if k in ka and k in kb: # In intersection
-            intersection_count += max(ka[k], kb[k])
+            intersection_count += min(ka[k], kb[k])
             union_count += max(ka[k], kb[k])
         else:
             if k in ka:
