@@ -44,7 +44,7 @@ Run `get_sketch.py` with the following arguments:
 
 Sample: For running minhash on the first bird genome (to compute sketches for all 42 genomes, exclude the -s and -e flags):
 
-`PYTHONHASHSEED=0 python3 get_sketch.py -f avian_genome_links.txt -o sketches/minhash/ -a minhash -s 0 -e 0`
+`(export PYTHONHASHSEED=0; python3 get_sketch.py -f avian_genome_links.txt -o sketches/minhash/ -a minhash -s 0 -e 0)`
 
 It takes about 23-25 minutes to compute a sketch for a single bird genome. We also provided the sketches that we have computed so that you can run the rest of the code and reproduce our results.
 
