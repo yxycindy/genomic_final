@@ -26,10 +26,10 @@ Run `python benchmark_runtime.py`
 - set `DEPTH` to change the depth of the synthetic phylogenomic tree which varies the size of input genome list
 
 ## To Compare the Performance of minhash / OMH / WMH with edit distance in terms of similarity 
-Run `python plot_similarity_graph.py` 
+Run `python3 plot_similarity_graph.py` 
 
 ## To compare accuracy of MinHash, Weighted MinHash, and Order MinHash to ground truth.
--Run ground_truth_method_comparision.py 
+Run `python3 ground_truth_method_comparison.py`
 
 ## To compute sketches for Avianbase bird genomes
 **Warning: this takes a long time (~24 hours). To reproduce the rest of the Avianbase results, skip to the next section.**
