@@ -3,6 +3,15 @@ Christian Cosgrove, Xingyi Yang, Jenna Ballard, Shuhao Lai\
 Computational Genomics Fall 2019
 
 # Directions for Running Code
+## Setup
+(If not installed) Install conda package manager.
+
+
+`wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`
+`sh Miniconda3-latest-Linux-x86_64.sh`
+`~/miniconda3/bin/conda create -n genome_sketching python=3.7`
+`~/miniconda3/bin/conda activate genome_sketching`
+
 
 ## List of Files
 - `minhash.py`: implementations for edit distance, minhash, weighted minhash and ordered minhash 
