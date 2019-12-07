@@ -4,13 +4,15 @@ Computational Genomics Fall 2019
 
 # Directions for Running Code
 
-## Setup
-Run `pip3 install -r requirements.txt` to install dependencies.
-
 ## List of Files
 - `minhash.py`: implementations for edit distance, minhash, weighted minhash and ordered minhash 
 - `plot_similarity_graph.py`: methods to plot the performance of minhash / OMH / WMH with varying k-mer length, and sketch size
 - `tree_similarity.py`: methods to calculate the similarity between different phylogenomic trees
+- `compute_mst.py`: compute minimum spanning tree given a list of edges
+- `create_tree.py`: Script to read in sketches, compute estimate of edit distance, and create minimum spanning tree
+- `get_sketch.py`: Get sketch for minhash and ordered minhash
+- `synthetic_data.py`: generate synthetic data
+
 
 
 ## To Benchmark runtime for methods on synthetic data 
@@ -54,6 +56,10 @@ Sample: For creating a tree from the `weighted_minhash` sketches:
 
 ## To run unit tests
 To ensure that our core sketching algorithms and helper functions were working properly, we wrote unit tests. To run unit tests, simply use `pytest`.
+
+# link to google drive 
+https://drive.google.com/drive/folders/1CdZuMulag5o9lIDH0NRrwnyY6y62\_LUJ?usp=sharing
+
 
 # TODO 
 
