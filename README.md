@@ -4,6 +4,13 @@ Computational Genomics Fall 2019
 
 # Directions for Running Code
 
+
+## To Benchmark runtime for methods on synthetic data 
+Run `python benchmark_runtime.py` 
+- set `KMER_LENGTH` to change the kmer lenth of the input genome
+- set `SKETCH_SIZE` to change the size of sketch when computing the minhash
+- set `DEPTH` to change the depth of the synthetic phylogenomic tree which varies the size of input genome list
+
 ## To compute sketches for Avianbase bird genomes
 **Warning: this takes a long time (~24 hours). To reproduce the rest of the Avianbase results, skip to the next section.**
 Run `get_sketch.py` with the following arguments:
@@ -36,8 +43,8 @@ Sample: For creating a tree from the `weighted_minhash` sketches:
 ## To run unit tests
 To ensure that our core sketching algorithms and helper functions were working properly, we wrote unit tests. To run unit tests, simply use `pytest`.
 
-# Link to GitHub
-https://github.com/yxycindy/genomic_final
+# link to google drive 
+https://drive.google.com/drive/folders/1CdZuMulag5o9lIDH0NRrwnyY6y62\_LUJ?usp=sharing
 
 
 # TODO 
