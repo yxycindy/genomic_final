@@ -17,8 +17,8 @@ G = nx.DiGraph()
 def generate_genome(depth):
 # mutate the parent genome for every child 
 # output a list of genome
-	# cparent = "GTTGAT"
-	cparent = "ATGC"
+	cparent = "GTTGATCGCATCTCATTTTGTGCATAT"
+	# cparent = "ATGC"
 	depth = depth
 	seed(5)
 	genome_list = []
