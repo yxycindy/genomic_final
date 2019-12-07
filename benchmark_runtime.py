@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 # syn_genome = generate_genome()
 KMER_LENGTH=2
 SKETCH_SIZE=10
+DEPTH=6
 
 
 def edit_distance_G():
@@ -22,36 +23,27 @@ def edit_distance_G():
 	# compute MST 
 	mst = kruskal(edges)
 
-	# outstr = visualize_graph(mst)
-	# outfile = open('trees/' + 'edit_dis' + '_bird_mst.dot', 'w')
-	# outfile.write(outstr)
-	# outfile.close()
-
-
 
 def get_minhash_G():
 	# generate edges 
 	edges = collections.defaultdict(list)
+	sketches = [minhash(string_to_kmers(i, KMER_LENGTH), SKETCH_SIZE) for i in syn_genome]
 	for i in range(0, len(syn_genome)):
 		for j in range(i+1, len(syn_genome)):
-			dis = 1-jaccard_hash(minhash(string_to_kmers(syn_genome[i], KMER_LENGTH), SKETCH_SIZE), minhash(string_to_kmers(syn_genome[j], KMER_LENGTH), SKETCH_SIZE))
+			dis = 1-jaccard_hash(sketches[i], sketches[j])
 			edges[dis].append((syn_genome[i], syn_genome[j]))
 
 	# compute MST 
 	mst = kruskal(edges)
 
-	# outstr = visualize_graph(mst)
-	# outfile = open('trees/' + 'minhashtest' + '_bird_mst.dot', 'w')
-	# outfile.write(outstr)
-	# outfile.close()
-
 
 def get_weighted_minhash_G():
 	# generate edges 
 	edges = collections.defaultdict(list)
+	sketches = [weighted_minhash(string_to_kmers(i, KMER_LENGTH), SKETCH_SIZE) for i in syn_genome]
 	for i in range(0, len(syn_genome)):
 		for j in range(i+1, len(syn_genome)):
-			dis = weighted_jaccard_hash(weighted_minhash(string_to_kmers(syn_genome[i], KMER_LENGTH), SKETCH_SIZE), weighted_minhash(string_to_kmers(syn_genome[j], KMER_LENGTH), SKETCH_SIZE))
+			dis = 1-weighted_jaccard_hash(sketches[i], sketches[j])
 			edges[dis].append((syn_genome[i], syn_genome[j]))
 
 	# compute MST 
@@ -60,9 +52,10 @@ def get_weighted_minhash_G():
 def get_order_minhash_G():
 	# generate edges 
 	edges = collections.defaultdict(list)
+	sketches = [order_minhash(string_to_kmers(i, KMER_LENGTH), SKETCH_SIZE) for i in syn_genome]
 	for i in range(0, len(syn_genome)):
 		for j in range(i+1, len(syn_genome)):
-			dis = hamming_similarity(order_minhash(string_to_kmers(syn_genome[i], KMER_LENGTH), SKETCH_SIZE), order_minhash(string_to_kmers(syn_genome[j], KMER_LENGTH), SKETCH_SIZE))
+			dis = 1-hamming_similarity(sketches[i], sketches[j])
 			edges[dis].append((syn_genome[i], syn_genome[j]))
 
 	# compute MST 
@@ -75,9 +68,9 @@ weighted_minhash_list = []
 order_minhash_list = []
 d = []
 
-for depth in range(2, 6):
-    d.append(depth)
+for depth in range(2, DEPTH):
     syn_genome = generate_genome(depth)
+    d.append(len(syn_genome))
     start = timeit.default_timer()
     edit_distance_G()
     stop = timeit.default_timer()

@@ -8,6 +8,7 @@ import re
 import numpy as np
 
 def progress(count, blocksize, total_size):
+    """ Progress tracker for Avianbase downloads. """
     global start
     if count ==0:
         start = time()
@@ -15,6 +16,7 @@ def progress(count, blocksize, total_size):
     sys.stdout.flush()
 
 def kmers_from_file(file, k):
+    """ Return a stream of the k-mers from a FASTA file."""
     with file as f:
         prevs = []
         while True:
@@ -30,7 +32,9 @@ def kmers_from_file(file, k):
             prevs = [data[-(j-1):] for j in range(k-1)]
 
 class Avianbase:
+    """ Class for downloading and loading Avianbase genomes"""
     def __init__(self, filename='links1.txt', out_dir='./tmp', start = 0, end=np.iinfo(np.int64).max, cache=False):
+        """ Create a new Avianbase object. Provide a path to a text file containing the URLs of the (possibly compressed) genome FASTA files."""
         super().__init__()
         self.links = self._load_links(filename)
         self.tmp_dir = out_dir
