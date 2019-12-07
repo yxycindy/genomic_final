@@ -4,12 +4,21 @@ Computational Genomics Fall 2019
 
 # Directions for Running Code
 
+## List of Files
+`minhash.py`: 
+`plot_similarity_graph.py`
+`tree_similarity.py`
+
 
 ## To Benchmark runtime for methods on synthetic data 
 Run `python benchmark_runtime.py` 
 - set `KMER_LENGTH` to change the kmer lenth of the input genome
 - set `SKETCH_SIZE` to change the size of sketch when computing the minhash
 - set `DEPTH` to change the depth of the synthetic phylogenomic tree which varies the size of input genome list
+
+## To Compare the Performance of minhash / OMH / WMH with edit distance in terms of similarity 
+Run `python plot_similarity_graph.py` 
+
 
 ## To compute sketches for Avianbase bird genomes
 **Warning: this takes a long time (~24 hours). To reproduce the rest of the Avianbase results, skip to the next section.**
