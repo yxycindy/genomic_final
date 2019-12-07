@@ -1,11 +1,8 @@
 import random
 from random import seed
 from random import randint
-import networkx as nx
 import matplotlib.pyplot as plt
 
-
-G = nx.DiGraph()
 
 def generate_genome(depth):
 # mutate the parent genome for every child 
@@ -31,9 +28,6 @@ def generate_genome(depth):
 				# append new chile to list and trees
 				genome_list.append(new_child)
 				cur_list.append(new_child)
-
-				#add item->child edge
-				G.add_edges_from([(item, new_child)])
 
 	return genome_list
 
