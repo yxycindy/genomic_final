@@ -21,7 +21,7 @@ Sample: For running minhash on the first bird genome (to compute sketches for al
 
 It takes about 23-25 minutes to compute a sketch for a single bird genome. We also provided the sketches that we have computed so that you can run the rest of the code and reproduce our results.
 
-## To compute minimum spanning tree from sketches and  .dot file
+## To compute minimum spanning tree from sketches and produce .dot and .png files
 Once sketches have been created, to compute the minimum spanning tree and output
     .dot and .png files
 run `create_tree.py` with the following arguments:
