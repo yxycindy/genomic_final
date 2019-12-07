@@ -75,7 +75,7 @@ def main():
 
     link_fname = 'avian_genome_links.txt'
 
-    a = avianbase.Avianbase(filename=link_fname, out_dir='./tmp', start=start_idx, end=end_idx, cache=True)
+    a = avianbase.Avianbase(filename=link_fname, out_dir='./tmp', start=start_idx, end=end_idx, cache=False)
 
     birdnamefile = 'bird_names.txt'
     birdnames = open(birdnamefile, 'r')
