@@ -59,15 +59,3 @@ To ensure that our core sketching algorithms and helper functions were working p
 
 # link to google drive 
 https://drive.google.com/drive/folders/1CdZuMulag5o9lIDH0NRrwnyY6y62\_LUJ?usp=sharing
-
-
-# TODO 
-
-3. Compute trees for Order MinHash and Weighted MinHash on Avianbase and synthetic data.
-
-4. Compare Avianbase trees with BirdTree.org
-
-5. Write better readme. In particular, instructions about how to run code (+ unit tests).
- Use conda environment to install pip/conda dependencies easily!
-
-6. Write paper!
