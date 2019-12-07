@@ -6,6 +6,7 @@ import minhash
 import compute_mst
 from tqdm import tqdm
 import argparse
+import os
 
 def get_args():
     parser = argparse.ArgumentParser(description='Compute MST and .dot file for visualization for given bird genomes.')
@@ -107,6 +108,13 @@ def create_dot(sketchdir, outdir, algorithm):
     outfile.write(outstr)
     outfile.close()
 
+    return algorithm+'_bird_mst.dot'
+
+def create_png_graph(dotdir, dotfile):
+    filename = dotfile[:-4]
+    myCmd = 'dot -Tpng ' + dotdir + dotfile + ' > ' + dotdir + filename+'.png'
+    os.system(myCmd)
+
 def main():
 
     args = get_args()
@@ -114,10 +122,13 @@ def main():
     outdir = args.out_dir
     algo = args.algo
 
+    if (algo != 'minhash' and algo != 'weighted_minhash' and algo != 'order_minhash'):
+        print('Invalid algorithm. Must be minhash, weighted_minhash, or order_minhash')
+        return
+
     # Params for creating graph for minhash
-    sketchdir = 'sketches/order_minhash/marcc_sketches/'
-    algorithm = 'order_minhash'
-    create_dot(sketchdir, outdir, algorithm)
+    dfile = create_dot(sketchdir, outdir, algo)
+    create_png_graph(outdir, dfile)
 
 
 if __name__ == "__main__":
