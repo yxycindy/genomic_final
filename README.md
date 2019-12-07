@@ -63,5 +63,3 @@ Sample: For creating a tree from the `weighted_minhash` sketches:
 ## To run unit tests
 To ensure that our core sketching algorithms and helper functions were working properly, we wrote unit tests. To run unit tests, simply use `pytest`.
 
-# link to google drive 
-https://drive.google.com/drive/folders/1CdZuMulag5o9lIDH0NRrwnyY6y62\_LUJ?usp=sharing
