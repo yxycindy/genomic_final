@@ -5,9 +5,9 @@ Computational Genomics Fall 2019
 # Directions for Running Code
 
 ## List of Files
-`minhash.py`: 
-`plot_similarity_graph.py`
-`tree_similarity.py`
+- `minhash.py`: implementations for edit distance, minhash, weighted minhash and ordered minhash 
+- `plot_similarity_graph.py`: methods to plot the performance of minhash / OMH / WMH with varying k-mer length, and sketch size
+- `tree_similarity.py`: methods to calculate the similarity between different phylogenomic trees
 
 
 ## To Benchmark runtime for methods on synthetic data 

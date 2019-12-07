@@ -72,6 +72,11 @@ def create_edges(birdnamefile, sketch_dir, algo, start_idx=0, num_birds=42):
                 else:
                     edges[edit_dist].append((namelist[i], namelist[j]))
 #                pbar.update(1)
+            else:
+                if (algo != 'minhash' and algo != 'weighted_minhash' and algo != 'order_minhash'):
+                    print('Invalid algorithm. Must be minhash, weighted_minhash, or order_minhash')
+                    exit()
+
 
 #            print(jaccard)
 #            print(namelist[i] + ' ' + namelist[j])
@@ -121,10 +126,6 @@ def main():
     sketchdir = args.sketch_dir
     outdir = args.out_dir
     algo = args.algo
-
-    if (algo != 'minhash' and algo != 'weighted_minhash' and algo != 'order_minhash'):
-        print('Invalid algorithm. Must be minhash, weighted_minhash, or order_minhash')
-        return
 
     # Params for creating graph for minhash
     dfile = create_dot(sketchdir, outdir, algo)

@@ -5,20 +5,14 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 
-
-# cparent = "GTTGATAAGCAAGCATCTCATTTTGTGCATATACCTGGTCTTTCGTATTCTGGCGTGAAGTCGCCGNCTGAATGCCAGCAATCTCTTTTTGAGTCTCATT"
-# cparent = "GTTGATAAGCAAGCA"
-# cparent = "ATGC"
-
-# depth = 5
-# seed(5)
 G = nx.DiGraph()
 
 def generate_genome(depth):
 # mutate the parent genome for every child 
 # output a list of genome
-	# cparent = "GTTGAT"
-	cparent = "ATGC"
+	cparent = "GTTGATCGCATCTCATTTTGTGCATAT"
+	# cparent = "ATGC"
+	# cparent = "GTTGATAAGCAATAAGCAAGCATCTCATTTTGTGCATATACCTGGTCTTTCGTATTCTGGCGTGAAGTCGCCGNCGCATCTCATTTTGTGCATATACCTGGTCTTTCGTATTCTGGCGTGAAGTCGCCGNCTGAATGCCAGCAATCTCTTTTTGAGTCTCATT"
 	depth = depth
 	seed(5)
 	genome_list = []
@@ -28,9 +22,7 @@ def generate_genome(depth):
 
 	for i in range(depth):
 		child_list, cur_list = cur_list, []
-		# print("*************")
 		for item in child_list:
-			# print("-------------")
 			# generate child for every genome
 			for j in range(randint(2, 5)):
 				pos_to_change = randint(0, len(item)-1)
