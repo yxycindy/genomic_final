@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 # get the synthetic data 
 # syn_genome = generate_genome()
-KMER_LENGTH=5
+KMER_LENGTH=2
 SKETCH_SIZE=10
 DEPTH=6
 
