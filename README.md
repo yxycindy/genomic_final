@@ -3,14 +3,28 @@ Christian Cosgrove, Xingyi Yang, Jenna Ballard, Shuhao Lai\
 Computational Genomics Fall 2019
 
 # Directions for Running Code
+## Setup
+(If not installed) Install conda package manager.
+
+
+`wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`
+`sh Miniconda3-latest-Linux-x86_64.sh`
+`~/miniconda3/bin/conda create -n genome_sketching python=3.7`
+`~/miniconda3/bin/conda activate genome_sketching`
+
 
 ## List of Files
 - `minhash.py`: implementations for edit distance, minhash, weighted minhash and ordered minhash 
 - `plot_similarity_graph.py`: methods to plot the performance of minhash / OMH / WMH with varying k-mer length, and sketch size
 - `tree_similarity.py`: methods to calculate the similarity between different phylogenomic trees
+- `compute_mst.py`: compute minimum spanning tree given a list of edges
+- `create_tree.py`: Script to read in sketches, compute estimate of edit distance, and create minimum spanning tree
+- `get_sketch.py`: Get sketch for minhash and ordered minhash
+- `synthetic_data.py`: generate synthetic data
 
 
-## To Benchmark runtime for methods on synthetic data 
+
+## To benchmark runtime for methods on synthetic data.
 Run `python benchmark_runtime.py` 
 - set `KMER_LENGTH` to change the kmer lenth of the input genome
 - set `SKETCH_SIZE` to change the size of sketch when computing the minhash
@@ -19,6 +33,8 @@ Run `python benchmark_runtime.py`
 ## To Compare the Performance of minhash / OMH / WMH with edit distance in terms of similarity 
 Run `python plot_similarity_graph.py` 
 
+## To compare accuracy of MinHash, Weighted MinHash, and Order MinHash to ground truth.
+-Run ground_truth_method_comparision.py 
 
 ## To compute sketches for Avianbase bird genomes
 **Warning: this takes a long time (~24 hours). To reproduce the rest of the Avianbase results, skip to the next section.**
@@ -54,15 +70,3 @@ To ensure that our core sketching algorithms and helper functions were working p
 
 # link to google drive 
 https://drive.google.com/drive/folders/1CdZuMulag5o9lIDH0NRrwnyY6y62\_LUJ?usp=sharing
-
-
-# TODO 
-
-3. Compute trees for Order MinHash and Weighted MinHash on Avianbase and synthetic data.
-
-4. Compare Avianbase trees with BirdTree.org
-
-5. Write better readme. In particular, instructions about how to run code (+ unit tests).
- Use conda environment to install pip/conda dependencies easily!
-
-6. Write paper!

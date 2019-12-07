@@ -48,8 +48,8 @@ Putting ground truth tree in the following format:
 '''
 
 
-SCIENTIFIC_BIRD_NAME_PATH = 'C:/Users/Shuha/PycharmProjects/Computational_Genomics/genomic_final/scientific_bird_names'
-COMMON_NAME_PATH = 'C:/Users/Shuha/PycharmProjects/Computational_Genomics/genomic_final/bird_names.txt'
+SCIENTIFIC_BIRD_NAME_PATH = 'scientific_bird_names'
+COMMON_NAME_PATH = 'bird_names.txt'
 
 
 def scientific_to_common_name_map(key_names_path, value_names_path):
@@ -77,10 +77,13 @@ def print_formatted_tree(outer_map):
             print('\t' + connected_bird)
 
 
-def create_tree(filepath, NUM_TREES=1):
+def create_tree(filepath='bird_phylogenic_tree.nex', num_trees=1):
     treelist = TreeList.get(path=filepath, schema="nexus")
-    outer_map = {}
-    for i in range(0, NUM_TREES):
+    if num_trees == -1:
+        num_trees = len(treelist)
+    maps = []
+    for i in range(0, num_trees):
+        outer_map = {}
         tree = treelist[i]
         # Iterate from root to tips of tree not including leaves.
         iterator = tree.ageorder_node_iter(include_leaves=False, descending=True)
@@ -96,7 +99,8 @@ def create_tree(filepath, NUM_TREES=1):
                     inner_map = create_inner_map(child_node, leaf_of_node_list)
                     child_name = convert_name(child_node.taxon.__str__())
                     outer_map[child_name] = inner_map
-    return outer_map
+        maps.append(outer_map)
+    return maps
 
 
 def create_inner_map(key_node, value_node_list, default_value=-1):
@@ -113,6 +117,6 @@ def convert_name(name):
 
 
 if __name__ == '__main__':
-    filepath = 'C:\\Users\\Shuha\\PycharmProjects\\Computational_Genomics\\genomic_final\\bird_phylogenic_tree.nex'
+    filepath = 'bird_phylogenic_tree.nex'
     formatted_tree = create_tree(filepath=filepath)
-    print_formatted_tree(formatted_tree)
+    print_formatted_tree(formatted_tree[0])
