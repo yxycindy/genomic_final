@@ -5,6 +5,21 @@ import numpy as np
 import minhash
 import compute_mst
 from tqdm import tqdm
+import argparse
+import os
+
+def get_args():
+    parser = argparse.ArgumentParser(description='Compute MST and .dot file for visualization for given bird genomes.')
+
+    parser.add_argument("-f", dest="sketch_dir", help="set directory containing sketches", required=True)
+
+    parser.add_argument("-o", dest="out_dir", help="set the output directory for the .dot file.", required=True)
+
+    parser.add_argument("-a", dest="algo", help="set the desired algorithm: 'minhash', 'weighted_minhash', 'order_minhash'", required=True)
+
+    args = parser.parse_args()
+
+    return args
 
 ''' Creates map of edges to be input to kruskal
     Parameters:
@@ -57,6 +72,11 @@ def create_edges(birdnamefile, sketch_dir, algo, start_idx=0, num_birds=42):
                 else:
                     edges[edit_dist].append((namelist[i], namelist[j]))
 #                pbar.update(1)
+            else:
+                if (algo != 'minhash' and algo != 'weighted_minhash' and algo != 'order_minhash'):
+                    print('Invalid algorithm. Must be minhash, weighted_minhash, or order_minhash')
+                    exit()
+
 
 #            print(jaccard)
 #            print(namelist[i] + ' ' + namelist[j])
@@ -82,22 +102,34 @@ def visualize_graph(mst):
 
     return outstr
 
-def create_dot(sketchdir, algorithm):
+def create_dot(sketchdir, outdir, algorithm):
     edges = create_edges('bird_names.txt', sketch_dir=sketchdir, algo=algorithm, start_idx=0)
 #    print(edges)
     mst = compute_mst.kruskal(edges)
 #    print(mst)
 
     outstr = visualize_graph(mst)
-    outfile = open('trees/' + algorithm + '_bird_mst.dot', 'w')
+    outfile = open(outdir + algorithm + '_bird_mst.dot', 'w')
     outfile.write(outstr)
     outfile.close()
 
+    return algorithm+'_bird_mst.dot'
+
+def create_png_graph(dotdir, dotfile):
+    filename = dotfile[:-4]
+    myCmd = 'dot -Tpng ' + dotdir + dotfile + ' > ' + dotdir + filename+'.png'
+    os.system(myCmd)
+
 def main():
+
+    args = get_args()
+    sketchdir = args.sketch_dir
+    outdir = args.out_dir
+    algo = args.algo
+
     # Params for creating graph for minhash
-    sketchdir = 'sketches/order_minhash/marcc_sketches/'
-    algorithm = 'order_minhash'
-    create_dot(sketchdir, algorithm)
+    dfile = create_dot(sketchdir, outdir, algo)
+    create_png_graph(outdir, dfile)
 
 
 if __name__ == "__main__":
