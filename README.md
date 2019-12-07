@@ -28,11 +28,6 @@ run `create_tree.py` with the following arguments:
 -    `-f` directory containing the sketches
 -    `-o` output directory for the .dot and .png files
 -    `-a` algorithm (minhash, weighted\_minhash, order\_minhash)
-Once sketches have been created, to compute the minimum spanning tree and .dot file,
-run `create_tree.py` with the following arguments:
--    `-f` directory containing the sketches
--    `-o` output directory for the .dot file
--    `-a` algorithm (minhash, weighted_minhash, order_minhash)
 
 Sample: For creating a tree from the `weighted_minhash` sketches:
 
